@@ -1,6 +1,6 @@
 # Anti-Counterfeit Product Identification System Using Blockchain
 
-This repository contains the code for an innovative anti-counterfeit product identification system that utilizes the unique capabilities of blockchain technology. The system provides a secure and transparent platform for tracking and verifying the authenticity of products across various industries.
+The Anti-Counterfeit Product Identification System Using Blockchain is an innovative solution that uses blockchain technology to combat counterfeit products in various industries. It uses QR codes, smart contracts, and the Ethereum network to provide a secure and transparent platform for tracking and verifying product authenticity. The system is significant in addressing global supply chain issues by reducing the prevalence of counterfeit goods and enhancing transparency and trust. 
 
 ## Table of Contents
 - [Overview](#overview)
