@@ -1,0 +1,42 @@
+create table public.auth
+(
+    username varchar(50) not null,
+    password varchar(50) not null,
+    id       serial,
+    role     varchar(50) not null,
+    primary key (id, username)
+);
+
+alter table public.auth
+    owner to postgres;
+
+create unique index username_id
+    on public.auth (username);
+
+create table public.profile
+(
+    name        varchar(50),
+    description varchar(500),
+    username    varchar(50) not null,
+    website     varchar,
+    location    varchar(50),
+    image       varchar(50),
+    role        varchar(50),
+    id          serial
+        primary key
+);
+
+alter table public.profile
+    owner to postgres;
+
+create table public.product
+(
+    name         varchar(50),
+    serialnumber varchar(50) default nextval('product_productid_seq'::regclass) not null
+        primary key,
+    brand        varchar(50)
+);
+
+alter table public.product
+    owner to postgres;
+

@@ -1,0 +1,39 @@
+.qr-container {
+    background: url('../img/bg.png') center center/cover no-repeat;
+    background-color: rgb(39, 50, 98);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+    justify-content: center;
+  }
+
+
+.qr-container-box {
+    width: 400px;
+    height: 500px;
+    background-color: #e3eefc;
+    opacity: 0.8;
+    padding: 20px;
+    border-radius: 2%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.qr-container-box>h1{
+    color: #193453;
+    width: 100%;
+    font-family: 'Gambetta', serif;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
