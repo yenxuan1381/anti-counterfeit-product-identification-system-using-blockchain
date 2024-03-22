@@ -8,7 +8,7 @@ Here is a live demo of the full functionality of the project
 [![Product Live Demo](https://img.youtube.com/vi/aWkgaCfMEn8/0.jpg)](https://www.youtube.com/watch?v=aWkgaCfMEn8 "Product Walkthrough")
 
 Here is a blog plost of this project:
-https://medium.com/me/stats/post/68d23c7bc41c
+https://medium.com/p/68d23c7bc41c
 
 
 ## Table of Contents
