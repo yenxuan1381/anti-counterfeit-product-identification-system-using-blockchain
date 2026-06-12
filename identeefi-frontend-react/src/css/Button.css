@@ -64,3 +64,8 @@
     color: #fff;
     transition: all 0.3s ease-out;
 }
+.btn--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}

@@ -41,14 +41,15 @@ const Guide = () => {
     },
   }));
 
-  return (
+    return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+       
         alignItems: "center",
-        marginBottom: "5rem",
+       
+        backgroundColor: '#050816'
       }}
     >
       <div
@@ -62,7 +63,7 @@ const Guide = () => {
 
       <Typography
         variant="h3"
-        sx={{ fontSize: "35px", fontWeight: "bold", color: "#000339", my: 3 }}
+        sx={{ fontSize: "35px", fontWeight: "bold", color: "white", my: 3 }}
       >
         How it works?
       </Typography>

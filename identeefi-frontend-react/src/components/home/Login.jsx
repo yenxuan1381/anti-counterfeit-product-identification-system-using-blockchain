@@ -5,7 +5,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import bgImg from "../../img/bg.png";
+import heroBg from "../../img/herobg.png";
 import axios from '../../api/axios';
 import useAuth from '../../hooks/useAuth';
 import { useRef, useState, useEffect } from 'react';
@@ -43,7 +43,7 @@ export default function Login() {
                 {
                     headers: { 'Content-Type': 'application/json' },
                 });
-
+              console.log(res)
             console.log(res?.data[0])
 
             if (res?.data.length === 0) {
@@ -73,8 +73,8 @@ export default function Login() {
 
     return (
         <Box sx={{
-            backgroundImage: `url(${bgImg})`,
-            minHeight: "80vh",
+            backgroundImage: `url(${heroBg})`,
+            minHeight: "100vh",
             backgroundRepeat: "no-repeat",
             position: 'absolute',
             left: 0,
@@ -94,7 +94,7 @@ export default function Login() {
                         px: 4,
                         py: 6,
                         marginTop: 8,
-                        backgroundColor: '#e3eefc',
+                        backgroundColor: '#161232c4',
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
@@ -102,15 +102,15 @@ export default function Login() {
 
                     }}
                 >
-                    <Typography component="h1" variant="h5"
+                    <Typography component="h1" variant="h5" color="#fff"
                         sx={{
                             textAlign: "center", marginBottom: "3%", marginTop: "3%",
-                            fontFamily: 'Gambetta', fontWeight: "bold", fontSize: "2.5rem"
+                            fontFamily: 'Gambetta', fontWeight: "bold", fontSize: "2.5rem",
                         }}
                     >
-                        IDENTEEFI
+                        AUTHENTISCAN
                     </Typography>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" color="#fff">
                         Login
                     </Typography>
                     {errMsg && <Typography component="h1" variant="body2" color="error" ref={errRef} sx={{marginTop: "2rem"}}>  {errMsg} </Typography>}
@@ -124,6 +124,32 @@ export default function Login() {
                             name="username"
                             autoFocus
                             onChange={(e) => setUser(e.target.value)}
+                            InputLabelProps={{ style: { color: "#fff" } }} // Input label color
+                            InputProps={{ style: { color: "#fff" } }}
+                            variant="outlined"
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                  borderColor: "#fff", // Set outline color to white
+                                  opacity: 0.5, // Set opacity for the outline
+                                },
+                                "&:hover fieldset": {
+                                  borderColor: "#fff", // Set outline color to white on hover
+                                },
+                                "&.Mui-focused fieldset": {
+                                  borderColor: "#fff", // Set outline color to white when focused
+                                },
+                              },
+                              "& .MuiInputLabel-root": {
+                                color: "#fff", // Set label color to white
+                              },
+                              "& .MuiInputBase-input": {
+                                color: "#fff", // Set text color to white
+                                opacity: 1, // Set opacity for the input text
+                              },
+                            }}
+                            
+
 
                         />
                         <TextField
@@ -135,10 +161,44 @@ export default function Login() {
                             type="password"
                             id="password"
                             onChange={(e) => setPwd(e.target.value)}
+                            InputLabelProps={{ style: { color: "#fff" } }} // Input label color
+                            InputProps={{ style: { color: "#fff" } }}
+                            variant="outlined"
+                            sx={{
+                              "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                  borderColor: "#fff", // Set outline color to white
+                                  opacity: 0.5, // Set opacity for the outline
+                                },
+                                "&:hover fieldset": {
+                                  borderColor: "#fff", // Set outline color to white on hover
+                                },
+                                "&.Mui-focused fieldset": {
+                                  borderColor: "#fff", // Set outline color to white when focused
+                                },
+                              },
+                              "& .MuiInputLabel-root": {
+                                color: "#fff", // Set label color to white
+                              },
+                              "& .MuiInputBase-input": {
+                                color: "#fff", // Set text color to white
+                                opacity: 1, // Set opacity for the input text
+                              },
+                            }}
+
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
+                            sx={{
+                                color:"#fff",
+                                "& .MuiCheckbox-root": {
+                                  color: "#fff", // Set checkbox color to white
+                                },
+                                "& .MuiIconButton-root": {
+                                  color: "#fff", // Set icon color to white
+                                },
+                            }}                
                         />
                         <Button
                             type="submit"

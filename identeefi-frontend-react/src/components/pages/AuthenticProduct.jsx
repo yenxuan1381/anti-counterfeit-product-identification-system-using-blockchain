@@ -1,5 +1,5 @@
 import { Box, Paper, Avatar, Typography, Button } from '@mui/material';
-import bgImg from '../../img/bg.png';
+import heroBg from "../../img/herobg.png";
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -82,7 +82,7 @@ const AuthenticProduct = () => {
 
     return (
         <Box sx={{
-            backgroundImage: `url(${bgImg})`,
+            backgroundImage: `url(${heroBg})`,
             minHeight: "80vh",
             position: 'absolute',
             left: 0,

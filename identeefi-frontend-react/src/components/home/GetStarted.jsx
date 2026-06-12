@@ -30,6 +30,7 @@ const GetStarted = () => {
   }));
 
   return (
+    <Box sx={{  backgroundColor: '#050816' }}>
     <CustomBox>
       <CustomContainer>
         <Box>
@@ -59,6 +60,7 @@ const GetStarted = () => {
         />
       </CustomContainer>
     </CustomBox>
+    </Box>
   );
 };
 

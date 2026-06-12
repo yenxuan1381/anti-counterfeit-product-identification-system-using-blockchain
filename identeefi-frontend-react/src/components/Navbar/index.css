@@ -1,0 +1,18 @@
+.walletconnect-modal__base {
+  margin-top: 24px !important;
+}
+
+.walletconnect-qrcode__image {
+  height: 300px !important;
+}
+
+.walletconnect-modal__mobile__toggle {
+  color: black;
+}
+.walletconnect-connect__button__icon_anchor {
+  margin: 0 !important;
+}
+
+.walletconnect-connect__buttons__wrapper__wrap {
+  margin: 0 !important;
+}

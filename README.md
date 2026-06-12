@@ -50,13 +50,17 @@ This system is significant in solving global supply chain issues as it provides 
 To get started with this project, 
 1. Clone the repository.
 2. In `identeefi-postgres-database`, import the csv files to your own postgres database.
-3. In `identeefi-backend-node`, run `npm i` to install the dependencies and change the postgres credentials to your postgres crediantials and run `node postgres.js` to start the backend execution.
+3. In `identeefi-backend-node`,run `npm i ` and then run `npm start` to install the dependencies and change the postgres credentials to your postgres crediantials and run `node postgres.js` to start the backend execution.
 4. In `identeefi-frontend-react`, run `npm i` to install the dependencies and run `npm start` to start localhost.
 5. You can inspect `identeefi-smartcontract-solidity` directory to view the smart contract details that is deployed to the Sepolia Testnet.
 6. To perform transactions, setup your Metamask wallet and connect your wallet to the Sepolia Tesnet Network and transact using SepoliaETH which can be obtained for free on Seplolia Faucet (https://sepoliafaucet.com/).
 
 For more information, you can view our user manual:
 [View User Manual](/user-manual.pdf)
+
+
+## VANAR DEPLOYEMENT
+- CONTRACT_ADDRESS (old) 0x0C778A1762BEb8878947E56966E56EC8F476ebAc 
 
 
 

@@ -1,5 +1,5 @@
 import { Box, Paper, Typography, Autocomplete } from '@mui/material';
-import bgImg from '../../img/bg.png';
+import heroBg from "../../img/herobg.png";
 import { TextField, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
@@ -9,6 +9,7 @@ import Geocode from "react-geocode";
 import dayjs from 'dayjs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import abi from '../../utils/Identeefi.json';
+// import abi from '../../utils/CounterField.json';
 
 const options = ["true", "false"]
 
@@ -60,7 +61,12 @@ const UpdateProductDetails = () => {
     const [loading, setLoading] = useState("");
 
 
-    const CONTRACT_ADDRESS = '0x62081f016446585cCC507528cc785980296b4Ccd';
+    // const CONTRACT_ADDRESS = '0x62081f016446585cCC507528cc785980296b4Ccd';
+    // const CONTRACT_ADDRESS = '0x0fC115735D3e14666E051181B914F4e2dfFCd93C';//vanar
+
+    const CONTRACT_ADDRESS = '0x0C778A1762BEb8878947E56966E56EC8F476ebAc' //vanar old
+
+
     const CONTRACT_ABI = abi.abi;
 
     const { auth } = useAuth();
@@ -158,7 +164,7 @@ const UpdateProductDetails = () => {
                 console.log("here")
 
                 // write transactions
-                const registerTxn = await productContract.addProductHistory(serialNumber, currName, currLocation, currDate.toString(), Boolean(isSold));
+                const registerTxn = await productContract.addProductHistory(serialNumber, currName, currLocation, currDate.toString(), isSold);
                 console.log("Mining (Adding Product History) ...", registerTxn.hash);
                 setLoading("Mining (Add Product History) ...", registerTxn.hash);
 
@@ -195,7 +201,7 @@ const UpdateProductDetails = () => {
 
     return (
         <Box sx={{
-            backgroundImage: `url(${bgImg})`,
+            backgroundImage: `url(${heroBg})`,
             minHeight: "80vh",
             backgroundRepeat: "no-repeat",
             position: 'absolute',
@@ -247,6 +253,40 @@ const UpdateProductDetails = () => {
                         minRows={2}
                         value={currLocation.replace(/;/g, ",")}
                     />
+                    {/* <TextField
+                        fullWidth
+                        id="outlined-basic"
+                        margin="normal"
+                        label="Location"
+                        multiline
+                        minRows={2}
+                        value={isSold.toString()}
+                        onChange={setIsSold}
+                    /> */}
+
+{auth.role === 'supplier'? null:
+<Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={options}
+                    fullWidth
+                    value={isSold ? 'true' : 'false'} 
+                    onChange={(event, newValue) => {
+                        setIsSold(newValue === 'true'); // Convert string back to boolean when updating state
+                    }}
+                    renderInput={(params) =>
+                        <TextField {...params}
+                            fullWidth
+                            id="outlined-basic"
+                            margin="normal"
+                            label="Is Sold?"
+                            variant="outlined"
+                        />
+                        
+                    }
+                />
+}
+
                     <TextField
                         fullWidth
                         id="outlined-disabled"
@@ -257,28 +297,6 @@ const UpdateProductDetails = () => {
                         value={dayjs(currDate * 1000).format("MMMM D, YYYY h:mm A")}
                     />
 
-                    {auth.role === "supplier" ? null
-                        : <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            options={options}
-                            fullWidth
-                            value={isSold}
-                            onChange={(event, newVal) => {
-                                setIsSold(newVal);
-                            }}
-                            renderInput={(params) =>
-                                <TextField {...params}
-                                    fullWidth
-                                    id="outlined-basic"
-                                    margin="normal"
-                                    label="Is Sold?"
-                                    variant="outlined"
-                                    inherit="False"
-
-                                />}
-                        />
-                    }
                 {loading === "" ? null
                         : <Typography
                             variant="body2"

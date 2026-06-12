@@ -1,5 +1,5 @@
 import { Box, Paper, Typography } from '@mui/material';
-import bgImg from '../../img/bg.png';
+import heroBg from '../../img/herobg.png';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
@@ -44,7 +44,7 @@ const ManageAccount = () => {
 
     return (
         <Box sx={{
-            backgroundImage: `url(${bgImg})`,
+            backgroundImage: `url(${heroBg})`,
             minHeight: "80vh",
             backgroundRepeat: "no-repeat",
             position: 'absolute',
@@ -56,7 +56,8 @@ const ManageAccount = () => {
             zIndex: -2,
             overflowY: "scroll"
         }}>
-            <Paper elevation={3} sx={{ width: "80%", margin: "auto", height: "530px", marginTop: "5%", marginBottom: "5%", padding: "3%", backgroundColor: "#e3eefc" }}>
+            <Paper elevation={3} sx={{ width: "80%", margin: "auto", height: "530px", marginTop: "5%", marginBottom: "5%", padding: "3%", backgroundColor: "#161232c4", color: "white",
+ }}>
                 <Typography
                     variant="h2"
                     sx={{
@@ -66,7 +67,7 @@ const ManageAccount = () => {
                 >
                     Manage Account
                 </Typography>
-                <Paper sx={{ height: 400, width: '100%', backgroundColor: "#e3eefc" }}>
+                <Paper sx={{ height: 400, width: '100%', backgroundColor: "#706d82" }}>
                     <DataGrid
                         rows={rows}
                         columns={columns}

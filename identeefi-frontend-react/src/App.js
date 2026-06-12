@@ -17,10 +17,15 @@ import Product from './components/pages/Product';
 import AuthenticProduct from './components/pages/AuthenticProduct';
 import FakeProduct from './components/pages/FakeProduct';
 import UpdateProductDetails from './components/pages/UpdateProductDetails';
-
+import WalletButtons from './components/WalletButtons/index';
+import WalletTest from "./components/pages/WalletConnect";
+import  NetworkCheck  from './components/pages/NetworkCheck';
+import Router from './components/Router';
 function App() {
 
   return (
+    // <NetworkCheck >
+
     <Routes>
       <Route path='/' element={<Layout />}>
 
@@ -31,7 +36,11 @@ function App() {
         <Route exact path='/product' element={< Product />}></Route>
         <Route exact path='/authentic-product' element={< AuthenticProduct />}></Route>
         <Route exact path='/fake-product' element={< FakeProduct />}></Route>
+        {/* test */}
+        <Route exact path='/walletbuttons' element={< WalletButtons />}></Route>{/**useAccount path */}
+        <Route exact path='/wallettest' element={< WalletTest/>}></Route>
 
+        
         {/* private routes */}
         <Route element={<RequireAuth allowedRoles={["admin"]} />}>
           <Route exact path='/admin' element={< Admin />}></Route>
@@ -54,6 +63,7 @@ function App() {
         <Route element={<RequireAuth allowedRoles={["manufacturer"]} />}>
           <Route exact path='/manufacturer' element={< Manufacturer />}></Route>
           <Route exact path='/add-product' element={< AddProduct />}></Route>
+
         </Route>
 
         <Route element={<RequireAuth allowedRoles={["supplier"]} />}>
@@ -69,6 +79,7 @@ function App() {
 
       </Route>
     </Routes>
+//  </NetworkCheck>
 
   );
 }

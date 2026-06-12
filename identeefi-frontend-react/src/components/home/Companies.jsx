@@ -23,8 +23,8 @@ const Companies = () => {
   }));
 
   return (
-    <Box sx={{ mt: 10 }}>
-      <CustomContainer>
+    <Box sx={{ mt: 0, backgroundColor: '#050816' }}>
+      <CustomContainer sx={{ paddingTop: '75px' }}>
         <CustomBox>
           <img src={logoImg} alt="logo" style={{ maxWidth: "100%" }} />
           <Typography
@@ -33,14 +33,14 @@ const Companies = () => {
               color: "#7D8589",
               fontSize: "16px",
               fontWeight: "bold",
-              mt: 2,
+              mx:3,
             }}
           >
             More than 45,000 trust Identeefi
           </Typography>
         </CustomBox>
 
-        <Box>
+        <Box sx={{paddingTop: "37px"}}>
           <img src={starsImg} alt="stars" style={{ maxWidth: "100%" }} />
           <Typography
             variant="body2"

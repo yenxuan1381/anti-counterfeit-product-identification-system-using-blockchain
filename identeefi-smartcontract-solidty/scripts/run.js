@@ -1,22 +1,25 @@
+const {time} = require("@nomicfoundation/hardhat-network-helpers")
 const main = async () => {
     const productContractFactory = await hre.ethers.getContractFactory("Identeefi");
     const productContract = await productContractFactory.deploy();
     await productContract.deployed();
     console.log("Contract deployed to:", productContract.address);
-
-    const productTxn = await productContract.registerProduct("name", "brand", "001", "description", "image",  "Manu Group", "loc", "123456");
+   const now =  Math.floor(new Date().getTime()/1000);
+   const expireTime = Math.floor(now + 86400);
+   console.log(now,expireTime)
+    const productTxn = await productContract.registerProduct("name", "brand", "001", "description", "image",  "Manu Group", "loc", expireTime);
 
     await productTxn.wait();
     console.log("Product registered:", productTxn.hash);
 
-    const historyTxn = await productContract.addProductHistory("001", "Manu Group", "loc", "1234567", false);
+    const historyTxn = await productContract.addProductHistory("001", "Manu Group", "loc", now,expireTime, false);
     await historyTxn.wait();
     console.log("Product history added:", historyTxn.hash);
 
-    const history2Txn = await productContract.addProductHistory("001", "Supplier Group", "sloc", "12345678", false);
-    await history2Txn.wait();
-    console.log("Product history added:", history2Txn.hash);
-
+    // const history2Txn = await productContract.addProductHistory("001", "Supplier Group", "sloc", "12345678", false);
+    // await history2Txn.wait();
+    // console.log("Product history added:", history2Txn.hash);
+    // time.increase(86400);
     const prod = await productContract.getProduct("001");
     console.log("Product:", prod);
   };

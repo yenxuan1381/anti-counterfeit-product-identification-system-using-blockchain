@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { Client } = require('pg')
 const path = require('path');
+const bcrypt = require('bcrypt');
 const multer = require('multer');
 
 const app = express();
@@ -89,21 +90,47 @@ function addProduct(serialNumber, name , brand){
 // auth
 app.get('/authAll', async (req, res)=>{
     const data =  await client.query('Select * from auth');
+    console.log(data);
     res.header('Access-Control-Allow-Credentials', true);
     res.send(data.rows);
-    console.log("Data sent successfully");
+    console.log("Data sent successfully0");
 });
 
+const saltRounds =10;
 app.post('/auth/:username/:password', async (req, res)=>{
     const {username, password} = req.params;
-    const data =  await client.query(`SELECT * FROM auth WHERE username = '${username}' AND password = '${password}'`);
-    res.send(data.rows);
-    console.log("Data sent successfully");
+    try {
+            const data =  await client.query(`SELECT * FROM auth WHERE username = '${username}'`);
+            console.log("data",data)
+            console.log(data.rows.length)
+    if(data.rows.length > 0){
+        // const hashedPassword = data.rows[0].password;
+        const hashedPassword = await bcrypt.hash(password,saltRounds);
+        console.log(password,hashedPassword)
+
+        const passwordMatch = await bcrypt.compare(password,hashedPassword);
+        if(passwordMatch){
+            res.status(200).send(data.rows);
+            console.log("Data sent successfully1")
+        }else {
+            res.status(401).send('Invalid password');
+        }
+    }else{
+        res.status(404).send('User not found');
+    }
+    // res.send(data.rows);
+    console.log("Data sent successfully2");
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        res.status(500).send('Internal Server Error');
+    }
+
 });
 
-app.post('/addaccount', (req, res)=>{
+app.post('/addaccount', async(req, res)=>{
     const {username, password, role} = req.body;
-    createAccount(username, password, role);
+    const hashedPassword = await bcrypt.hash(password,saltRounds);
+    createAccount(username, hashedPassword, role);
     res.send('Data inserted');
 
 });
@@ -120,18 +147,20 @@ app.get('/profileAll', async (req, res)=>{
     const data =  await client.query('Select * from profile');
     res.header('Access-Control-Allow-Credentials', true);
     res.send(data.rows);
-    console.log("Data sent successfully");
+    console.log("Data sent successfully3");
 });
 
 app.get('/profile/:username', async (req, res)=>{
     const {username} = req.params;
     const data =  await client.query(`SELECT * FROM profile WHERE username = '${username}'`);
+    console.log("data",data)
     res.send(data.rows);
-    console.log("Data sent successfully");
+    console.log("Data sent successfully4");
 });
 
 app.post('/addprofile', (req, res)=>{
     const {username, name, description, website, location, image, role} = req.body;
+    console.log("image",image);
     createProfile(username, name, description, website, location, image, role);
     res.send('Data inserted');
 
@@ -174,12 +203,15 @@ app.post('/upload/product', (req, res)=>{
 app.get('/file/profile/:fileName', function (req, res) {
     const {fileName} = req.params;
     const filePath = path.join(__dirname, 'public/uploads/profile', fileName);
+    console.log('Serving file from:', filePath);
     res.sendFile(filePath);
 });
 
 app.get('/file/product/:fileName', function (req, res) {
     const {fileName} = req.params;
     const filePath = path.join(__dirname, 'public/uploads/product', fileName);
+    console.log('Serving file from:', filePath);
+
     res.sendFile(filePath);
 });
 

@@ -2,11 +2,12 @@ import '../../css/Role.css'
 import { TextField, Box, Paper, Typography, Autocomplete, Button } from '@mui/material';
 import React from 'react'
 import { useRef, useState, useEffect } from 'react';
-import bgImg from '../../img/bg.png';
+import heroBg from '../../img/herobg.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const options = ["manufacturer", "supplier", "retailer"]
+{console.log("hellp")}
 
 const AddAccount = () => {
     const [user, setUser] = useState('');
@@ -26,6 +27,7 @@ const AddAccount = () => {
     const errRef = useRef();
     const navigate = useNavigate()
 
+    
     useEffect(() => {
         setErrMsg('');
     }, [user, pwd]);
@@ -42,7 +44,9 @@ const AddAccount = () => {
     const uploadImage = async (image) => {
         const data = new FormData();
         data.append("image", image.file);
-
+      try {
+        
+      
         axios.post("http://localhost:5000/upload/profile", data, {
             headers: { "Content-Type": "multipart/form-data" }
         }).then(res => {
@@ -52,6 +56,11 @@ const AddAccount = () => {
                 console.log("image uploaded");
             }
         })
+
+    }catch (error) {
+        console.error("Error uploading image", error);
+
+        }
     }
 
     const handleBack = () => {
@@ -136,32 +145,54 @@ const AddAccount = () => {
 
 
     return (
-        <Box sx={{
-            backgroundImage: `url(${bgImg})`,
-            minHeight: "100vh",
-            backgroundRepeat: "no-repeat",
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            backgroundSize: 'cover',
-            zIndex: -2,
-            overflowY: "scroll"
-
-        }}>
-            <Paper elevation={3} sx={{ width: "400px", margin: "auto", marginTop: "10%", marginBottom: "10%", padding: "3%", backgroundColor: "#e3eefc" }}>
-                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+        <Box
+            sx={{
+                backgroundImage: `url(${heroBg})`,
+                minHeight: "100vh",
+                backgroundRepeat: "no-repeat",
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                backgroundSize: "cover",
+                zIndex: -2,
+                overflowY: "scroll",
+            }}
+        >
+            <Paper
+                elevation={3}
+                sx={{
+                    width: { xs: "90%", sm: "80%", md: "400px" },
+                    margin: "auto",
+                    marginTop: "4%",
+                    marginBottom: "10%",
+                    padding: "3%",
+                    backgroundColor: "#161232c4",
+                }}
+            >
+                <p
+                    ref={errRef}
+                    className={errMsg ? "errmsg" : "offscreen"}
+                    aria-live="assertive"
+                >
+                    {errMsg}
+                </p>
 
                 <Typography
                     variant="h2"
                     sx={{
-                        textAlign: "center", marginBottom: "3%",
-                        fontFamily: 'Gambetta', fontWeight: "bold", fontSize: "2.5rem"
+                        textAlign: "center",
+                        marginBottom: "3%",
+                        fontFamily: "Gambetta",
+                        fontWeight: "bold",
+                        fontSize: { xs: "1.8rem", sm: "2.5rem" },
+                        color: "white"
                     }}
                 >
-                    Add Account</Typography>
-                    
+                    Add Account
+                </Typography>
+
                 <form onSubmit={handleSubmit}>
                     <TextField
                         fullWidth
@@ -172,6 +203,27 @@ const AddAccount = () => {
                         inherit="False"
                         onChange={(e) => setUser(e.target.value)}
                         value={user}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    borderColor: "#fff",
+                                    opacity: 0.5,
+                                },
+                                "&:hover fieldset": {
+                                    borderColor: "#fff",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    borderColor: "#fff",
+                                },
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "#fff",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "#fff",
+                                opacity: 1,
+                            },
+                        }}
                     />
 
                     <TextField
@@ -179,11 +231,32 @@ const AddAccount = () => {
                         id="outlined-basic"
                         margin="normal"
                         label="Password"
-                        type='password'
+                        type="password"
                         variant="outlined"
                         inherit="False"
                         onChange={(e) => setPwd(e.target.value)}
                         value={pwd}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    borderColor: "#fff",
+                                    opacity: 0.5,
+                                },
+                                "&:hover fieldset": {
+                                    borderColor: "#fff",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    borderColor: "#fff",
+                                },
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "#fff",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "#fff",
+                                opacity: 1,
+                            },
+                        }}
                     />
 
                     <TextField
@@ -191,25 +264,46 @@ const AddAccount = () => {
                         id="outlined-basic"
                         margin="normal"
                         label="Confirm Password"
-                        type='password'
+                        type="password"
                         variant="outlined"
                         inherit="False"
                         onChange={(e) => setPwd2(e.target.value)}
                         value={pwd2}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    borderColor: "#fff",
+                                    opacity: 0.5,
+                                },
+                                "&:hover fieldset": {
+                                    borderColor: "#fff",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    borderColor: "#fff",
+                                },
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "#fff",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "#fff",
+                                opacity: 1,
+                            },
+                        }}
                     />
 
-                    {pwd == pwd2? null:
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    textAlign: "center", 
-                                    fontSize: "12px", color: "red"
-                                }}
-                            >
-                                Passwords do not match
-                            </Typography>
-
-                        }
+                    {pwd === pwd2 ? null : (
+                        <Typography
+                            variant="body2"
+                            sx={{
+                                textAlign: "center",
+                                fontSize: "12px",
+                                color: "red",
+                            }}
+                        >
+                            Passwords do not match
+                        </Typography>
+                    )}
 
                     <Autocomplete
                         disablePortal
@@ -220,36 +314,58 @@ const AddAccount = () => {
                         onChange={(event, newRole) => {
                             setRole(newRole);
                         }}
-                        renderInput={(params) =>
-                            <TextField {...params}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
                                 fullWidth
                                 id="outlined-basic"
                                 margin="normal"
                                 label="Role"
                                 variant="outlined"
                                 inherit="False"
-
-                            />}
+                                sx={{
+                                    "& .MuiOutlinedInput-root": {
+                                        "& fieldset": {
+                                            borderColor: "#fff",
+                                            opacity: 0.5,
+                                        },
+                                        "&:hover fieldset": {
+                                            borderColor: "#fff",
+                                        },
+                                        "&.Mui-focused fieldset": {
+                                            borderColor: "#fff",
+                                        },
+                                    },
+                                    "& .MuiInputLabel-root": {
+                                        color: "#fff",
+                                    },
+                                    "& .MuiInputBase-input": {
+                                        color: "#fff",
+                                        opacity: 1,
+                                    },
+                                }}
+                            />
+                        )}
                     />
 
                     <Button
                         variant="outlined"
                         component="label"
                         fullWidth
-                        // onChange = {handleImage}
                         sx={{ marginTop: "3%" }}
                     >
                         Upload Image
-                        <input
-                            type="file"
-                            hidden
-                            onChange={handleImage}
-                        />
+                    
+                        <input type="file" hidden onChange={handleImage} />
                     </Button>
 
-                    {image.filepreview !== null ?
-                        <img src={image.filepreview} alt="preview" style={{ width: "100%", height: "100%" }} />
-                        : null}
+                    {image.filepreview !== null ? (
+                        <img
+                            src={image.filepreview}
+                            alt="preview"
+                            style={{ width: "100%", height: "100%" }}
+                        />
+                    ) : null}
 
                     <TextField
                         fullWidth
@@ -257,9 +373,30 @@ const AddAccount = () => {
                         margin="normal"
                         label="Name"
                         variant="outlined"
-                        inherit="False"                        
+                        inherit="False"
                         onChange={(e) => setName(e.target.value)}
                         value={name}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    borderColor: "#fff",
+                                    opacity: 0.5,
+                                },
+                                "&:hover fieldset": {
+                                    borderColor: "#fff",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    borderColor: "#fff",
+                                },
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "#fff",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "#fff",
+                                opacity: 1,
+                            },
+                        }}
                     />
 
                     <TextField
@@ -273,6 +410,27 @@ const AddAccount = () => {
                         minRows={2}
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    borderColor: "#fff",
+                                    opacity: 0.5,
+                                },
+                                "&:hover fieldset": {
+                                    borderColor: "#fff",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    borderColor: "#fff",
+                                },
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "#fff",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "#fff",
+                                opacity: 1,
+                            },
+                        }}
                     />
 
                     <TextField
@@ -284,6 +442,27 @@ const AddAccount = () => {
                         inherit="False"
                         onChange={(e) => setWebsite(e.target.value)}
                         value={website}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    borderColor: "#fff",
+                                    opacity: 0.5,
+                                },
+                                "&:hover fieldset": {
+                                    borderColor: "#fff",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    borderColor: "#fff",
+                                },
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "#fff",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "#fff",
+                                opacity: 1,
+                            },
+                        }}
                     />
 
                     <TextField
@@ -292,15 +471,42 @@ const AddAccount = () => {
                         margin="normal"
                         label="Location"
                         variant="outlined"
-                        inherit="False"                        
+                        inherit="False"
                         onChange={(e) => setLocation(e.target.value)}
                         value={location}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "& fieldset": {
+                                    borderColor: "#fff",
+                                    opacity: 0.5,
+                                },
+                                "&:hover fieldset": {
+                                    borderColor: "#fff",
+                                },
+                                "&.Mui-focused fieldset": {
+                                    borderColor: "#fff",
+                                },
+                            },
+                            "& .MuiInputLabel-root": {
+                                color: "#fff",
+                            },
+                            "& .MuiInputBase-input": {
+                                color: "#fff",
+                                opacity: 1,
+                            },
+                        }}
                     />
 
                     <Button
                         variant="contained"
                         type="submit"
-                        sx={{ width: "100%", marginTop: "3%", backgroundColor: '#98b5d5', '&:hover': { backgroundColor: '#618dbd' } }}
+                        sx={{
+                            width: "100%",
+                            marginTop: "3%",
+                            fontSize: "1.2rem",
+                            backgroundColor: "#65529d",
+                            "&:hover": { backgroundColor: "#618dbd" },
+                        }}
                     >
                         Add Account
                     </Button>
@@ -312,19 +518,24 @@ const AddAccount = () => {
                             justifyContent: "center",
                         }}
                     >
-
-
                         <Button
                             onClick={handleBack}
                             sx={{
                                 marginTop: "5%",
+                                backgroundColor: "#D1D8F0",
+                                color: "#4B0082",
+                                fontSize: "1.2rem",
+                                padding: "5px 32px",
+                                borderRadius: "8px",
+                                "&:hover": {
+                                    backgroundColor: "#A9A9A9",
+                                    color: "#000000",
+                                },
                             }}
                         >
                             Back
                         </Button>
-
                     </Box>
-
                 </form>
             </Paper>
         </Box>

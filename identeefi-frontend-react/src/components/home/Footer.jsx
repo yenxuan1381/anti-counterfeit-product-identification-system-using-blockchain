@@ -37,14 +37,14 @@ const Footer = () => {
   }));
 
   return (
-    <Box sx={{ py: 10 }}>
+    <Box sx={{ py: 10  , backgroundColor: '#050816'}}>
       <CustomContainer>
         <CustomContainer>
           <Box>
             <Typography
               sx={{
                 fontSize: "20px",
-                color: "#1C1C1D",
+                color: "white",
                 fontWeight: "700",
                 mb: 2,
               }}
@@ -65,7 +65,7 @@ const Footer = () => {
             <Typography
               sx={{
                 fontSize: "20px",
-                color: "#1C1C1D",
+                color: "white",
                 fontWeight: "700",
                 mb: 2,
               }}
@@ -86,7 +86,7 @@ const Footer = () => {
             <Typography
               sx={{
                 fontSize: "20px",
-                color: "#1C1C1D",
+                color: "white",
                 fontWeight: "700",
                 mb: 2,
               }}
@@ -107,7 +107,7 @@ const Footer = () => {
             <Typography
               sx={{
                 fontSize: "20px",
-                color: "#1C1C1D",
+                color: "white",
                 fontWeight: "700",
                 mb: 2,
               }}
